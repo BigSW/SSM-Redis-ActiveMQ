@@ -14,4 +14,5 @@ public class UtilsTest {
 		String blank = StringUtils.trimToNull(str);
 		log.info(blank);
 	}
+	
 }
