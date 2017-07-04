@@ -29,7 +29,7 @@ public class redisTest {
 
 	
 	/*
-	 * ²âÊÔÊÇ·ñÄÜpingÍ¨
+	 * æµ‹è¯•æ˜¯å¦èƒ½pingé€š
 	 * 
 	 * */
 	/*public static void main(String[] args) {

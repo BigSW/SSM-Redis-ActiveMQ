@@ -20,7 +20,7 @@ public class sendMessageService implements IsendMessageService {
 		if(destination==null){
 			destination= jmsTemplate.getDefaultDestination();
 		}
-		System.out.println("---------------生产者发了一个消息：" + message+";Address"+destination); 
+		System.out.println("---------------鐢熶骇鑰呭彂浜嗕竴涓秷鎭細" + message+";Address"+destination); 
 		jmsTemplate.send(destination, new MessageCreator() {
 			public Message createMessage(Session session) throws JMSException {
 				return session.createTextMessage(message);

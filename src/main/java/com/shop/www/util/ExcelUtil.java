@@ -5,7 +5,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.io.PipedOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +12,6 @@ import org.apache.log4j.Logger;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.hssf.util.HSSFColor;
 import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.xssf.usermodel.XSSFCell;
@@ -50,7 +48,7 @@ public class ExcelUtil {
 	}
 
 	/**
-	 * ¶ÁÈ¡excel±íÖĞµÄĞÅÏ¢
+	 * è¯»å–excelè¡¨ä¸­çš„ä¿¡æ¯
 	 * @return	
 	 */
 	public List<List<String>> readExcel() {
@@ -77,20 +75,20 @@ public class ExcelUtil {
 	}
 
 	/**
-	 * Éú³Éexcek±í¸ñ
-	 * @param title ±í¸ñ±êÌâ
-	 * @param data	±í¸ñÊı¾İ
-	 * @param out	Êä³öÁ÷
+	 * ç”Ÿæˆexcekè¡¨æ ¼
+	 * @param title è¡¨æ ¼æ ‡é¢˜
+	 * @param data	è¡¨æ ¼æ•°æ®
+	 * @param out	è¾“å‡ºæµ
 	 */
 	public static void writeExcel(String title, List<String> data, final OutputStream out) {
 		XSSFWorkbook workbook = new XSSFWorkbook();
-		XSSFSheet sheet = workbook.createSheet("µ¼³öµÄÀı×Ó");
+		XSSFSheet sheet = workbook.createSheet("å¯¼å‡ºçš„ä¾‹å­");
 
-		XSSFRow headRow = sheet.createRow(0); // ±êÌâĞĞ
+		XSSFRow headRow = sheet.createRow(0); // æ ‡é¢˜è¡Œ
 		XSSFCell cell = null;
 		ExcelUtil.setCellValue(headRow, 0, 2, title, ExcelUtil.setHeadStyle(workbook));
 
-		if (data != null && data.size() > 0) { // ÄÚÈİĞĞ
+		if (data != null && data.size() > 0) { // å†…å®¹è¡Œ
 			for (int j = 0; j < data.size(); j++) {
 				XSSFRow bodyRow = sheet.createRow(j + 1);
 				cell = bodyRow.createCell(0);
@@ -136,30 +134,30 @@ public class ExcelUtil {
 		return "";
 	}
 
-	/** ÉèÖÃ±í¸ñ-±íÍ·ÑùÊ½
+	/** è®¾ç½®è¡¨æ ¼-è¡¨å¤´æ ·å¼
 	 * @param wb 	XSSFWorkbook
 	 * @return
 	 */
 	public static XSSFCellStyle setHeadStyle(XSSFWorkbook wb) {
-		// ´´½¨µ¥Ôª¸ñÑùÊ½
+		// åˆ›å»ºå•å…ƒæ ¼æ ·å¼
 		XSSFCellStyle cellStyle = wb.createCellStyle();
-		// ÉèÖÃµ¥Ôª¸ñµÄ±³¾°ÑÕÉ«Îªµ­À¶É«
+		// è®¾ç½®å•å…ƒæ ¼çš„èƒŒæ™¯é¢œè‰²ä¸ºæ·¡è“è‰²
 		cellStyle.setFillForegroundColor(HSSFColor.PALE_BLUE.index);
 		cellStyle.setFillPattern(XSSFCellStyle.SOLID_FOREGROUND);
-		// ÉèÖÃµ¥Ôª¸ñ¾ÓÖĞ¶ÔÆë
+		// è®¾ç½®å•å…ƒæ ¼å±…ä¸­å¯¹é½
 		cellStyle.setAlignment(XSSFCellStyle.ALIGN_CENTER);
-		// ÉèÖÃµ¥Ôª¸ñ´¹Ö±¾ÓÖĞ¶ÔÆë
+		// è®¾ç½®å•å…ƒæ ¼å‚ç›´å±…ä¸­å¯¹é½
 		cellStyle.setVerticalAlignment(XSSFCellStyle.VERTICAL_CENTER);
-		// ´´½¨µ¥Ôª¸ñÄÚÈİÏÔÊ¾²»ÏÂÊ±×Ô¶¯»»ĞĞ
+		// åˆ›å»ºå•å…ƒæ ¼å†…å®¹æ˜¾ç¤ºä¸ä¸‹æ—¶è‡ªåŠ¨æ¢è¡Œ
 		cellStyle.setWrapText(true);
-		// ÉèÖÃµ¥Ôª¸ñ×ÖÌåÑùÊ½
+		// è®¾ç½®å•å…ƒæ ¼å­—ä½“æ ·å¼
 		XSSFFont font = wb.createFont();
-		// ÉèÖÃ×ÖÌå¼Ó´Ö
+		// è®¾ç½®å­—ä½“åŠ ç²—
 		font.setBoldweight(XSSFFont.BOLDWEIGHT_BOLD);
-		font.setFontName("ËÎÌå");
+		font.setFontName("å®‹ä½“");
 		font.setFontHeight((short) 200);
 		cellStyle.setFont(font);
-		// ÉèÖÃµ¥Ôª¸ñ±ß¿òÎªÏ¸ÏßÌõ
+		// è®¾ç½®å•å…ƒæ ¼è¾¹æ¡†ä¸ºç»†çº¿æ¡
 		cellStyle.setBorderLeft(XSSFCellStyle.BORDER_THIN);
 		cellStyle.setBorderBottom(XSSFCellStyle.BORDER_THIN);
 		cellStyle.setBorderRight(XSSFCellStyle.BORDER_THIN);
@@ -169,27 +167,27 @@ public class ExcelUtil {
 	}
 
 	/**
-	 * ÉèÖÃ±í¸ñÄÚÈİ¾ßÌåÑùÊ½
+	 * è®¾ç½®è¡¨æ ¼å†…å®¹å…·ä½“æ ·å¼
 	 * @param wb XSSFWorkbook
 	 * @return
 	 */
 	public static XSSFCellStyle setBodyStyle(XSSFWorkbook wb) {
-		// ´´½¨µ¥Ôª¸ñÑùÊ½
+		// åˆ›å»ºå•å…ƒæ ¼æ ·å¼
 		XSSFCellStyle cellStyle = wb.createCellStyle();
-		// ÉèÖÃµ¥Ôª¸ñ¾ÓÖĞ¶ÔÆë
+		// è®¾ç½®å•å…ƒæ ¼å±…ä¸­å¯¹é½
 		cellStyle.setAlignment(XSSFCellStyle.ALIGN_CENTER);
-		// ÉèÖÃµ¥Ôª¸ñ´¹Ö±¾ÓÖĞ¶ÔÆë
+		// è®¾ç½®å•å…ƒæ ¼å‚ç›´å±…ä¸­å¯¹é½
 		cellStyle.setVerticalAlignment(XSSFCellStyle.VERTICAL_CENTER);
-		// ´´½¨µ¥Ôª¸ñÄÚÈİÏÔÊ¾²»ÏÂÊ±×Ô¶¯»»ĞĞ
+		// åˆ›å»ºå•å…ƒæ ¼å†…å®¹æ˜¾ç¤ºä¸ä¸‹æ—¶è‡ªåŠ¨æ¢è¡Œ
 		cellStyle.setWrapText(true);
-		// ÉèÖÃµ¥Ôª¸ñ×ÖÌåÑùÊ½
+		// è®¾ç½®å•å…ƒæ ¼å­—ä½“æ ·å¼
 		XSSFFont font = wb.createFont();
-		// ÉèÖÃ×ÖÌå¼Ó´Ö
+		// è®¾ç½®å­—ä½“åŠ ç²—
 		font.setBoldweight(XSSFFont.BOLDWEIGHT_BOLD);
-		font.setFontName("ËÎÌå");
+		font.setFontName("å®‹ä½“");
 		font.setFontHeight((short) 200);
 		cellStyle.setFont(font);
-		// ÉèÖÃµ¥Ôª¸ñ±ß¿òÎªÏ¸ÏßÌõ
+		// è®¾ç½®å•å…ƒæ ¼è¾¹æ¡†ä¸ºç»†çº¿æ¡
 		cellStyle.setBorderLeft(XSSFCellStyle.BORDER_THIN);
 		cellStyle.setBorderBottom(XSSFCellStyle.BORDER_THIN);
 		cellStyle.setBorderRight(XSSFCellStyle.BORDER_THIN);
@@ -198,12 +196,12 @@ public class ExcelUtil {
 	}
 
 	/**
-	 * Ä³ĞĞÖĞ£¬µÚx1-x2ÁĞµÄºÏ²¢
-	 * @param row  µ±Ç°µÄĞĞ
+	 * æŸè¡Œä¸­ï¼Œç¬¬x1-x2åˆ—çš„åˆå¹¶
+	 * @param row  å½“å‰çš„è¡Œ
 	 * @param x1
 	 * @param x2
-	 * @param obj	µ¥Ôª¸ñÖĞµÄÄÚÈİ
-	 * @param cellStyle	ÑùÊ½
+	 * @param obj	å•å…ƒæ ¼ä¸­çš„å†…å®¹
+	 * @param cellStyle	æ ·å¼
 	 */
 	public static void setCellValue(XSSFRow row, int x1,int x2, Object obj,XSSFCellStyle cellStyle) {
 		XSSFCell createCell = row.createCell(x1);

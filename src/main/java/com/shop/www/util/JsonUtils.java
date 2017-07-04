@@ -15,9 +15,9 @@ public class JsonUtils {
 	}
 
 	/**
-	 * map×ªjson
+	 * mapè½¬json
 	 * 
-	 * @author£ºsw
+	 * @authorï¼šsw
 	 * @param map
 	 * @return
 	 */
@@ -29,9 +29,9 @@ public class JsonUtils {
 	}
 
 	/**
-	 * list×ªjson
+	 * listè½¬json
 	 * 
-	 * @author£ºsw
+	 * @authorï¼šsw
 	 * @param list
 	 * @return
 	 */
@@ -43,10 +43,10 @@ public class JsonUtils {
 	}
 
 	/**
-	 * JSON×ªmap
+	 * JSONè½¬map
 	 * 
 	 * @param <K>
-	 * @author£ºsw
+	 * @authorï¼šsw
 	 * @param json
 	 * @return
 	 */
@@ -58,9 +58,9 @@ public class JsonUtils {
 	}
 
 	/**
-	 * JSON×ªlist
+	 * JSONè½¬list
 	 * 
-	 * @author£ºsw
+	 * @authorï¼šsw
 	 * @param json
 	 * @return
 	 */
@@ -72,7 +72,7 @@ public class JsonUtils {
 	}
 
 	/**
-	 * json×ª¶ÔÏó
+	 * jsonè½¬å¯¹è±¡
 	 * 
 	 * @param json
 	 * @param clazz

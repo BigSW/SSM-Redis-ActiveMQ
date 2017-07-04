@@ -11,7 +11,7 @@ public class MessageListenerImpl implements MessageListener{
 		TextMessage textMessage = (TextMessage) message;
 		try {
 			String messageDetail =textMessage.getText();
-			System.out.println("收到消息！消息详情："+messageDetail);
+			System.out.println("鏀跺埌娑堟伅锛氭秷鎭鎯咃細"+messageDetail);
 		} catch (JMSException e) {
 			e.printStackTrace();
 		}
