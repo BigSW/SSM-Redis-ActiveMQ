@@ -186,6 +186,17 @@ public class StringUtils {
 		return true;
 	}
 
+	/**
+	 * 匹配是否输入的内容满足正则表达式
+	 * @param str 内容
+	 * @param regex 正则表达式
+	 * @return
+	 */
+	public static boolean isMatch(String str, String regex) {
+		Pattern pattern = Pattern.compile(regex);
+		Matcher matcher = pattern.matcher(str);
+		return matcher.matches();
+	}
 
 	/**
 	 * 生成一个10位的tonken用于http cache
