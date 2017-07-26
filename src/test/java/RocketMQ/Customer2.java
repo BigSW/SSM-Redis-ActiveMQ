@@ -16,7 +16,7 @@ public class Customer2 {
 
 		consumer.setNamesrvAddr("192.168.86.128:9876");
 		consumer.setInstanceName("rmq-instance");
-		consumer.subscribe("Topic-test", "TagB");
+		consumer.subscribe("SELF_TEST_TOPIC", "TagA");
 
 		consumer.registerMessageListener(new MessageListenerConcurrently() {
 			@Override

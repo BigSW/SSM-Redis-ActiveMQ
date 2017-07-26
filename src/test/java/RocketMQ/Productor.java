@@ -1,9 +1,5 @@
 package RocketMQ;
 
-import java.util.Date;
-
-import org.apache.camel.component.properties.SysPropertiesFunction;
-
 import com.alibaba.rocketmq.client.exception.MQBrokerException;
 import com.alibaba.rocketmq.client.exception.MQClientException;
 import com.alibaba.rocketmq.client.producer.DefaultMQProducer;
@@ -20,21 +16,9 @@ public class Productor {
 		producer.start();
 		try {
 			for (int i = 0; i < 3; i++) {
-				Message msg = new Message("Topic-test", // topic
-						"TagA", // tag
-						( "A-Hello RocketMQ" + i).getBytes()// body
-				);
+				Message msg = new Message("OFFSET_MOVED_EVENT", "TagA",( "A-Hello RocketMQ" + i).getBytes());
 				SendResult sendResult = producer.send(msg);
-			}
-			
-			System.out.println("A发送完成.....");
-			
-			for (int i = 0; i < 3; i++) {
-				Message msg = new Message("Topic-test", // topic
-						"TagB", // tag
-						( "B-Hello RocketMQ" + i).getBytes()// body
-				);
-				SendResult sendResult = producer.send(msg);
+				System.out.println("sendResult:"+sendResult);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
